@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_contact/feature/view/widgets/text_field_widget.dart';
 import 'package:get_contact/feature/view/widgets/custome_button.dart';
@@ -7,8 +8,8 @@ class NewContactScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var name = TextEditingController();
-    var phone = TextEditingController();
+    var nameController = TextEditingController();
+    var phoneController = TextEditingController();
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -25,9 +26,9 @@ class NewContactScreen extends StatelessWidget {
         title: Text(
           'Add New Contact',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -40,7 +41,7 @@ class NewContactScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Textfieldwidget(
-                controller: name,
+                controller: nameController,
                 label: 'Name',
                 text: 'Enter Name',
               ),
@@ -48,16 +49,26 @@ class NewContactScreen extends StatelessWidget {
               SizedBox(height: 16),
 
               Textfieldwidget(
-                controller: phone,
+                controller: phoneController,
                 label: 'Phone Number',
                 text: 'Enter Phone Number',
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 30),
               Center(
-                child: CustomMaterialButton(onPressed: () {}, text: "Save"),
+                child: CustomMaterialButton(
+                  onPressed: () async {
+                    var name = nameController.text;
+                    var phone = phoneController.text;
+                    var collection = FirebaseFirestore.instance.collection(
+                      "contact",
+                    );
+                    await collection.doc().set({"name": name, "phone": phone});
+                  },
+                  text: "Save",
+                ),
               ),
             ],
-          ),شيشيششيش
+          ),
         ),
       ),
     );
