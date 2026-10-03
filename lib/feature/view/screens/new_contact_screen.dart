@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get_contact/core/helper/app_dialog.dart';
 import 'package:get_contact/feature/view/widgets/text_field_widget.dart';
 import 'package:get_contact/feature/view/widgets/custome_button.dart';
 
@@ -59,10 +60,21 @@ class NewContactScreen extends StatelessWidget {
                   onPressed: () async {
                     var name = nameController.text;
                     var phone = phoneController.text;
-                    var collection = FirebaseFirestore.instance.collection(
-                      "contact",
-                    );
-                    await collection.doc().set({"name": name, "phone": phone});
+                    AppDialog.showLoading(context);
+                    try {
+                      var collection = FirebaseFirestore.instance.collection(
+                        "contact",
+                      );
+                      await collection.doc().set({
+                        "name": name,
+                        "phone": phone,
+                      });
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    } catch (e) {
+                      Navigator.of(context).pop();
+                      AppDialog.showErorr(context, e.toString());
+                    }
                   },
                   text: "Save",
                 ),
