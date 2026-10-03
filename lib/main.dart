@@ -19,7 +19,7 @@ class ContactApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.newContact,
+      initialRoute: AppRoutes.home,
       routes: {
         AppRoutes.home: (context) => HomeScreen(),
         AppRoutes.newContact: (context) => NewContactScreen(),
