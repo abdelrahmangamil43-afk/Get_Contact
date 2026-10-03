@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_contact/core/routes/app_routes.dart';
+import 'package:get_contact/feature/view/screens/home_screen.dart';
+import 'package:get_contact/feature/view/screens/new_contact_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -16,11 +19,11 @@ class ContactApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Center(child: Text('Hello Firebase')),
-      ),
+      initialRoute: AppRoutes.newContact,
+      routes: {
+        AppRoutes.home: (context) => HomeScreen(),
+        AppRoutes.newContact: (context) => NewContactScreen(),
+      },
     );
   }
 }
