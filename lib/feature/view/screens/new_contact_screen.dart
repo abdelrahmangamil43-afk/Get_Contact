@@ -45,18 +45,19 @@ class NewContactScreen extends StatelessWidget {
                 text: 'Enter Name',
               ),
 
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               Textfieldwidget(
                 controller: phone,
                 label: 'Phone Number',
                 text: 'Enter Phone Number',
-
-                maxLines: 4,
               ),
-              CustomMaterialButton(onPressed: () {}, text: "Save"),
+              SizedBox(height: 16),
+              Center(
+                child: CustomMaterialButton(onPressed: () {}, text: "Save"),
+              ),
             ],
-          ),
+          ),شيشيششيش
         ),
       ),
     );

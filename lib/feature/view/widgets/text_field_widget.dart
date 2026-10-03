@@ -25,9 +25,9 @@ class Textfieldwidget extends StatelessWidget {
           Text(
             label,
             style: const TextStyle(
-              fontSize: 13,
+              fontSize: 20,
               fontWeight: FontWeight.w200,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
 
